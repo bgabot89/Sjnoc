@@ -1,2 +1,2 @@
 # Sjnoc
-repo for the non-profit organization, will only host files that are updated through wordpress
+A repository for the non-profit organization, will only host files that are updated through wordpress
