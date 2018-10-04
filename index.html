@@ -5,14 +5,10 @@
 <meta http-equiv="Content-Language" content="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Welcome to the Nihonmachi Outreach Committee's Web Site - SJNOC.org</title>
-<style type="text/css">
-<!--
-.style2 {line-height: normal; font-weight: normal; font-style: normal;}
--->
-</style>
+
 <link href="noc_txt.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-<!--
+
 body {
 	background-image: url(images/background-tile.gif);
 	margin-left: 0px;
@@ -100,7 +96,6 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-style: italic;
 }
--->
 </style>
 
 <script language="JavaScript" type="text/JavaScript">
@@ -129,7 +124,23 @@ function MM_swapImage() { //v3.0
 }
 //-->
 </script>
+
+<script src="js/app.js"></script>
+
 </head>
+
+<form action="your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_DEND1f2WKePKbu8SSdMJPEO9"
+    data-amount="999"
+    data-name="sjnoc.org"
+    data-description="Example charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>
+
 
 <body onLoad="MM_preloadImages('images/index-mo_05.gif','images/index-mo_08.gif','images/index-mo_03.gif')">
 <TABLE width="782" border=0 cellpadding=0 cellspacing=0>
