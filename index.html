@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Welcome to the Nihonmachi Outreach Committee's Web Site - SJNOC.org</title>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <link href="noc_txt.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
@@ -125,21 +126,13 @@ function MM_swapImage() { //v3.0
 //-->
 </script>
 
-<script src="js/app.js"></script>
+<script src="js/stripe.js"></script>
 
 </head>
 
-<form action="your-server-side-code" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_DEND1f2WKePKbu8SSdMJPEO9"
-    data-amount="999"
-    data-name="sjnoc.org"
-    data-description="Example charge"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</form>
+<div id="shop">
+		 <button id="buttonCheckout">Checkout</button>
+</div>
 
 
 <body onLoad="MM_preloadImages('images/index-mo_05.gif','images/index-mo_08.gif','images/index-mo_03.gif')">
@@ -687,4 +680,37 @@ nts...</font></a></td>
 </TABLE>
 
 </body>
+
+<script>
+
+//configuring the checkout library
+
+var checkoutHandler = StripeCheckout.configure({
+  key: "pk_test_DEND1f2WKePKbu8SSdMJPEO9",
+  locale: "auto"
+});
+
+var button = document.getElementById("buttonCheckout");
+button.addEventListener("click", function(ev) {
+  checkoutHandler.open({ //opens the payment method from checkout
+    name: "Sample Store",
+    description: "Example Purchase",
+    token: handleToken
+  });
+});
+
+function handleToken(token) {
+	console.log(token);
+  fetch("/charge", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(token)
+  })
+  .then(output => {
+    if (output.status === "succeeded")
+      document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
+  })
+}
+
+ </script>
 <!-- InstanceEnd --></html>
