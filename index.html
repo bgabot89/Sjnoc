@@ -8,96 +8,8 @@
 
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <link href="noc_txt.css" rel="stylesheet" type="text/css">
-<style type="text/css">
+<link href="css/master.css" rel="stylesheet" type="text/css">
 
-body {
-	background-image: url(images/background-tile.gif);
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.auto-style59 {
-	background-color: #660000;
-}
-.auto-style60 {
-	border-style: solid;
-	border-color: #660000;
-	background-color: #660000;
-}
-.auto-style63 {
-	background-color: #FFFFCC;
-}
-.auto-style64 {
-	background-color: #800000;
-}
-.auto-style70 {
-	background-color: #FFFFCC;
-	font-family: Arial, Helvetica, sans-serif;
-}
-.auto-style72 {
-	font-family: Arial, Helvetica, sans-serif;
-}
-.auto-style79 {
-	text-align: center;
-}
-.auto-style3 {
-	font-family: Arial, Helvetica, sans-serif;
-}
-.auto-style81 {
-	font-family: "Palatino Linotype";
-	font-size: large;
-	color: #FFFFFF;
-}
-.auto-style82 {
-	text-align: center;
-	background-color: #000000;
-}
-.auto-style83 {
-	text-align: left;
-}
-.auto-style75 {
-	color: #FFFFFF;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: x-large;
-}
-.auto-style84 {
-	text-align: left;
-	font-size: x-small;
-}
-.auto-style85 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: large;
-}
-.auto-style86 {
-	border-width: 0px;
-}
-.auto-style87 {
-	text-align: left;
-	font-size: medium;
-	font-family: Arial, Helvetica, sans-serif;
-}
-.auto-style88 {
-	text-align: left;
-	font-size: medium;
-}
-.auto-style89 {
-	background-color: #800000;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: x-large;
-	color: #C0C0C0;
-}
-.auto-style91 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: x-large;
-	color: #800000;
-	font-weight: bold;
-}
-.auto-style92 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic;
-}
-</style>
 
 <script language="JavaScript" type="text/JavaScript">
 <!--
@@ -130,9 +42,7 @@ function MM_swapImage() { //v3.0
 
 </head>
 
-<div id="shop">
-		 <button id="buttonCheckout">Checkout</button>
-</div>
+
 
 
 <body onLoad="MM_preloadImages('images/index-mo_05.gif','images/index-mo_08.gif','images/index-mo_03.gif')">
@@ -193,13 +103,16 @@ function MM_swapImage() { //v3.0
 	</table>
 	</TD>
     <TD><script language="JavaScript1.2">mmLoadMenus();</script>
+
+			<!--NAVBAR STARTS HERE-->
       <table height="34"  border="0" cellpadding="0" cellspacing="0">
         <tr valign="top">
           <td>
-			<a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('dor','','images/index-mo_03.gif',1)" href="dor/dor_index.htm"><img src="images/index_03.gif" alt="Day of Remembrance Information" name="dor" width="57" height="34" border="0"></a><a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('about_noc','','images/index-mo_04.gif',1)" href="about/about.htm"><img src="images/index_04.gif" width=107 height=34 border="0" alt="" name="about_noc"></a>
-			<a href="newsletter.html"><img src="images/index_05.gif" alt="" name="newsletter" width=98 height=34 border="0" onMouseOver="MM_swapImage('newsletter','','images/index-mo_05.gif',1)" onMouseOut="MM_swapImgRestore()"></a>
+			<a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('dor','','images/index-mo_03.gif',1)" href="dor/dor_index.htm"><img src="images/index_03.gif" alt="Day of Remembrance Information" name="dor" width="57" height="34" border="0"></a>
+			<a onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('about_noc','','images/index-mo_04.gif',1)" href="about"><img src="images/index_04.gif" width=107 height=34 border="0" alt="" name="about_noc"></a>
+			<a href="newsletter"><img src="images/index_05.gif" alt="" name="newsletter" width=98 height=34 border="0" onMouseOver="MM_swapImage('newsletter','','images/index-mo_05.gif',1)" onMouseOut="MM_swapImgRestore()"></a>
 			<a href="forms/membership.pdf"><img src="images/index_06.gif" width=91 height=34 alt="" name="join_noc" border="0" onMouseOver="MM_swapImage('join_noc','','images/index-mo_06.gif',1)" onMouseOut="MM_swapImgRestore()"></a>
-			<a href="index.html"><img src="images/index_08.gif" width=70 height=34 alt="" name="home" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('home','','images/index-mo_08.gif',1)" border="0"></a>
+			<a href="/"><img src="images/index_08.gif" width=70 height=34 alt="" name="home" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('home','','images/index-mo_08.gif',1)" border="0"></a>
       <a href="more/more.htm"><img src="images/more.gif" width=56 height=34 alt="" name="more" border="0" onMouseOver="MM_swapImage('more','','images/more-mo.gif',1)" onMouseOut="MM_swapImgRestore()"></a>        </tr>
       </table>
   </TR>
@@ -256,6 +169,12 @@ subscribe to the NOC E-Newsletter!</font></td>
 				<tr>
 					<td>&nbsp;</td>
 				</tr>
+
+				<!--Donate button-->
+				<div id="shop">
+					<button id="buttonCheckout">Donate</button>
+				</div>
+
 				</table>
 			</td>
 		</tr>
@@ -708,6 +627,7 @@ function handleToken(token) {
   })
   .then(output => {
     if (output.status === "succeeded")
+			console.log('succeeded purchase');
       document.getElementById("shop").innerHTML = "<p>Purchase complete!</p>";
   })
 }
