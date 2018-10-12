@@ -6,6 +6,8 @@ const path = require('path');
 const bodyParser = require("body-parser");
 const stripe = require ('stripe')('sk_test_kdKA2VjFkSR43TuQUTDDFqkA');
 
+const exphbs = require('express-handlebars');
+
 //publishable and secret keys
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
@@ -29,37 +31,46 @@ app.use('/static', express.static('./public'));
 // app.use(express.static(path.join(__dirname, 'public')))
 
 
+//allow use of view engine middleware
+app.engine('handlebars',exphbs({defaultLayout:'main'}));
+app.set('view engine', 'handlebars');
+
 //allow user of body parser middleware
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: false}));
 
-// viewed at http://localhost:3000
-app.get('/', function(req, res) {
-    // res.sendFile(path.join(__dirname + '/index.html'));
-  res.sendFile(path.join(__dirname+ '/index.html'));
+//NEW ROUTING
+app.get('/', function(req,res) {
+  res.render('index');
 });
 
-app.get('/success', function(req,res) {
-  // res.sendFile('/success.html');
-  res.sendFile(path.join(__dirname+ '/success.html'));
-})
-
-app.get('/dor', function(req,res) {
-  // res.sendFile('/success.html');
-  res.sendFile(path.join(__dirname+ '/dor.html'));
-})
-
-app.get('/about', function(req,res) {
-  res.sendFile(path.join(__dirname+ '/about.html'));
-})
-
-app.get('/newsletter', function(req,res) {
-  res.sendFile(path.join(__dirname+ '/newsletter.html'));
-})
-
-app.get('/more', function(req,res) {
-  res.sendFile(path.join(__dirname+ '/more.html'));
-})
+//OLD ROUTING with html files
+// app.get('/', function(req, res) {
+//     // res.sendFile(path.join(__dirname + '/index.html'));
+//   res.sendFile(path.join(__dirname+ '/index.html'));
+// });
+//
+// app.get('/success', function(req,res) {
+//   // res.sendFile('/success.html');
+//   res.sendFile(path.join(__dirname+ '/success.html'));
+// })
+//
+// app.get('/dor', function(req,res) {
+//   // res.sendFile('/success.html');
+//   res.sendFile(path.join(__dirname+ '/dor.html'));
+// })
+//
+// app.get('/about', function(req,res) {
+//   res.sendFile(path.join(__dirname+ '/about.html'));
+// })
+//
+// app.get('/newsletter', function(req,res) {
+//   res.sendFile(path.join(__dirname+ '/newsletter.html'));
+// })
+//
+// app.get('/more', function(req,res) {
+//   res.sendFile(path.join(__dirname+ '/more.html'));
+// })
 
 //route to charge
 app.post('/charge', function(req,res) {
