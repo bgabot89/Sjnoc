@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -15,9 +16,17 @@ const keySecret = process.env.SECRET_KEY;
 // app.use(express.static(__dirname + '/View'));
 
 //holds static files such as images and js files here
-app.use(express.static(`${__dirname}/public`));
+// app.use(express.static(`${__dirname}/public`));
 
-// app.use(express.static(__dirname + '/public'));
+// app.use(express.static('public'));
+
+// app.use('/', express.static(path.join(__dirname, 'public')))
+
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+
+app.use('/static', express.static('./public'));
+
+// app.use(express.static(path.join(__dirname, 'public')))
 
 
 //allow user of body parser middleware
@@ -48,6 +57,10 @@ app.get('/newsletter', function(req,res) {
   res.sendFile(path.join(__dirname+ '/newsletter.html'));
 })
 
+app.get('/more', function(req,res) {
+  res.sendFile(path.join(__dirname+ '/more.html'));
+})
+
 //route to charge
 app.post('/charge', function(req,res) {
   let amount = 500; //charge 5.00
@@ -63,10 +76,11 @@ app.post('/charge', function(req,res) {
         currency: 'usd',
         customer: customer.id
     }))
-    .then(charge => res.send(charge))
-   //  .then(charge => {
-   //    console.log('charged');
-   // })
+    // .then(charge => res.send(charge))
+    .then(charge => {
+      console.log(res);
+      res.redirect('/success');
+   })
 
     .catch(err => {
       console.log("Error:", err);
