@@ -4,13 +4,16 @@ const app = express();
 const path = require('path');
 //add a middleware view to hook up express, node.js to the client-side files, html
 const bodyParser = require("body-parser");
-const stripe = require ('stripe')('sk_test_kdKA2VjFkSR43TuQUTDDFqkA');
+// const stripe = require ('stripe')('sk_test_kdKA2VjFkSR43TuQUTDDFqkA');
 
 const exphbs = require('express-handlebars');
 
+const keys = require('./config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
+
 //publishable and secret keys
-const keyPublishable = process.env.PUBLISHABLE_KEY;
-const keySecret = process.env.SECRET_KEY;
+// const keyPublishable = process.env.PUBLISHABLE_KEY;
+// const keySecret = process.env.SECRET_KEY;
 
 // const token = request.body.stripeToken;
 
@@ -41,8 +44,14 @@ app.use(require('body-parser').urlencoded({extended: false}));
 
 //NEW ROUTING
 app.get('/', function(req,res) {
-  res.render('index');
+  res.render('index', {
+    stripePublishableKey: keys.stripePublishableKey
+  });
 });
+
+app.get('/dor', function(req,res) {
+  res.render('dor');
+})
 
 //OLD ROUTING with html files
 // app.get('/', function(req, res) {
@@ -88,10 +97,8 @@ app.post('/charge', function(req,res) {
         customer: customer.id
     }))
     // .then(charge => res.send(charge))
-    .then(charge => {
-      console.log(res);
-      res.redirect('/success');
-   })
+
+    .then(charge => res.render('success'))
 
     .catch(err => {
       console.log("Error:", err);
