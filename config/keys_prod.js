@@ -1,5 +1,5 @@
 
 module.exports = {
-  stripePublishableKey: 'pk_live_uLcIEdgkYkurk06tdy7SjXOY',
-  stripeSecretKey: 'sk_live_aLiWl9mbNjNtmdfQcU6Iv2TD'
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY
 }
