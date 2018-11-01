@@ -59,6 +59,8 @@ app.get('/dor', (req, res) => {
   res.render('dor');
 });
 
+//testing payment checkout page -- for TESTING PURPOSES only
+
 app.get('/payment', (req, res) => {
   // console.log(keys);
   res.render('charge', {
@@ -81,6 +83,7 @@ app.post('/charge', (req, res) => {
     amount,
     description: 'Donation',
     currency: 'usd',
+    receipt_email: 'briangabot@gmail.com',
     customer: customer.id
   }))
   .then(charge => res.render('success'));
