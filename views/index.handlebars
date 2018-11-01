@@ -1,5 +1,7 @@
 <!--HEADER STUFF-->
-  <!-- <TR>
+<form action="/charge" method="POST">
+<TABLE width="782" border=0 cellpadding=0 cellspacing=0>
+  <TR>
     <TD colspan=2><IMG src="static/images/index_01.gif" width=640 height=88 alt="" usemap="#Map" border="0"></TD>
   </TR>
   <TR>
@@ -66,7 +68,7 @@
 			<a href="/"><img src="static/images/index_08.gif" width=70 height=34 alt="" name="home" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('home','','static/images/index-mo_08.gif',1)" border="0"></a>
       <a href="more"><img src="static/images/more.gif" width=56 height=34 alt="" name="more" border="0" onMouseOver="MM_swapImage('more','','static/images/more-mo.gif',1)" onMouseOut="MM_swapImgRestore()"></a>        </tr>
       </table>
-  </TR> -->
+  </TR>
   <!--END-->
 
 
@@ -88,24 +90,26 @@
 					<a href="e_newsletter/2018/august/noc_news.htm" target="_blank">
 					<font color="#FFFFFF">Click here to view the latest<br>
 					NOC E-Newsletter</font></a></td>
-					<td><form method=post action=http://www.ymlp.com/subscribe.php?NOC>
-<table border=0 width="338">
-<tr>
-<td colspan=2>
-<p align="left"><font color="#FFFF66">Fill out your e-mail address to <br>
-subscribe to the NOC E-Newsletter!</font></td>
-</tr>
-<tr>
-<td width="125"><input type="text" name="YMLP0" size="20"></td>
-<td width="180"><input type="submit" value="Submit"></td>
-</tr>
-<tr>
-<td colspan=2>
-<input type="radio" name="action" value="subscribe" checked>
-<font color="#FFFF66">Subscribe<input type="radio" name="action" value="unsubscribe"> Unsubscribe</font></td>
-</tr>
-</table>
-</form></td>
+					 <td>
+            <form method=post action=http://www.ymlp.com/subscribe.php?NOC>
+              <table border=0 width="338">
+              <tr>
+              <td colspan=2>
+              <p align="left"><font color="#FFFF66">Fill out your e-mail address to <br>
+              subscribe to the NOC E-Newsletter!</font></td>
+              </tr>
+              <tr>
+              <td width="125"><input type="text" name="YMLP0" size="20"></td>
+              <td width="180"><input type="submit" value="Submit"></td>
+              </tr>
+              <tr>
+              <td colspan=2>
+              <input type="radio" name="action" value="subscribe" checked>
+              <font color="#FFFF66">Subscribe<input type="radio" name="action" value="unsubscribe"> Unsubscribe</font></td>
+              </tr>
+              </table>
+              </form>
+           </td>
 				</tr>
 			</table>
 			</td>
@@ -134,20 +138,17 @@ subscribe to the NOC E-Newsletter!</font></td>
 					<button id="buttonCheckout">Donate</button>
 				</div> -->
 
-        <form action="/charge" method="POST">
          <script
            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
            data-key="{{stripePublishableKey}}"
+           data-image="static/images/NOC_logo3.jpg"
            data-amount="500"
-           data-name="Web Development Ebook"
-           data-description="Donation"
+           data-name="Donation"
+           data-description="Donation form for sjnoc"
            data-locale="auto">
          </script>
 
-         <!-- <script>
-           // Hide default stripe button
-           document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
-         </script> -->
+         <!-- <button type="submit" id="submit" class="btn btn-outline-dark text-white btn-lg">Donate</button> -->
 
 				</table>
 			</td>
@@ -556,8 +557,9 @@ subscribe to the NOC E-Newsletter!</font></td>
 	</table></TD>
   </TR>
   </TABLE>
+</form>
 
-</body>
+<!-- </body>
 </html>
 nts...</font></a></td>
 			<td align="center" height="10" width="1%">
@@ -569,4 +571,4 @@ nts...</font></a></td>
   <TR>
     <TD width="5">&nbsp;</TD>
     <TD width="4">&nbsp;</TD>
-  </TR>
+  </TR> -->

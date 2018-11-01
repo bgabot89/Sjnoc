@@ -1,15 +1,16 @@
 
 const express = require('express');
-const app = express();
 const path = require('path');
+const keys = require('./config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
 //add a middleware view to hook up express, node.js to the client-side files, html
 const bodyParser = require("body-parser");
 // const stripe = require ('stripe')('sk_test_kdKA2VjFkSR43TuQUTDDFqkA');
 
 const exphbs = require('express-handlebars');
 
-const keys = require('./config/keys');
-const stripe = require('stripe')(keys.stripeSecretKey);
+
+const app = express();
 
 //publishable and secret keys
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
@@ -27,9 +28,7 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 
 // app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-
-app.use('/static', express.static('./public'));
+// app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // app.use(express.static(path.join(__dirname, 'public')))
 
@@ -40,18 +39,52 @@ app.set('view engine', 'handlebars');
 
 //allow user of body parser middleware
 app.use(bodyParser.json());
-app.use(require('body-parser').urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended:false}));
+
+
+// app.use(require('body-parser').urlencoded({extended: false}));
+
+// Set Static Folder
+app.use('/static', express.static('./public'));
 
 //NEW ROUTING
-app.get('/', function(req,res) {
+app.get('/', (req, res) => {
+  // console.log(keys);
   res.render('index', {
     stripePublishableKey: keys.stripePublishableKey
   });
 });
 
-app.get('/dor', function(req,res) {
+app.get('/dor', (req, res) => {
   res.render('dor');
-})
+});
+
+app.get('/payment', (req, res) => {
+  // console.log(keys);
+  res.render('charge', {
+    stripePublishableKey: keys.stripePublishableKey
+  });
+});
+
+
+app.post('/charge', (req, res) => {
+
+  console.log(res.body);
+
+  const amount = 500;
+
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer => stripe.charges.create({
+    amount,
+    description: 'Donation',
+    currency: 'usd',
+    customer: customer.id
+  }))
+  .then(charge => res.render('success'));
+});
 
 //OLD ROUTING with html files
 // app.get('/', function(req, res) {
@@ -82,32 +115,33 @@ app.get('/dor', function(req,res) {
 // })
 
 //route to charge
-app.post('/charge', function(req,res) {
-  let amount = 500; //charge 5.00
+// app.post('/charge', function(req,res) {
+//   let amount = 500; //charge 5.00
+//
+//   stripe.customers.create({
+//     email: req.body.email,
+//     card: req.body.id
+//   })
+//   .then(customer =>
+//     stripe.charges.create({
+//         amount,
+//         description: "Sample Charge",
+//         currency: 'usd',
+//         customer: customer.id
+//     }))
+//     // .then(charge => res.send(charge))
+//
+//     .then(charge => res.render('success'))
+//
+//     .catch(err => {
+//       console.log("Error:", err);
+//       res.status(500).send({error: "Purchase Failed"});
+//     });
 
-  stripe.customers.create({
-    email: req.body.email,
-    card: req.body.id
-  })
-  .then(customer =>
-    stripe.charges.create({
-        amount,
-        description: "Sample Charge",
-        currency: 'usd',
-        customer: customer.id
-    }))
-    // .then(charge => res.send(charge))
-
-    .then(charge => res.render('success'))
-
-    .catch(err => {
-      console.log("Error:", err);
-      res.status(500).send({error: "Purchase Failed"});
-    });
 
   // console.log(req.body);
   // res.send('TEST');
-});
+// });
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
