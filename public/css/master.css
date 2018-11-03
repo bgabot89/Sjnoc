@@ -1,11 +1,49 @@
-body {
+/* body {
 	background-image: url(../images/background-tile.gif);
 	margin-left: 0px;
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+} */
+
+html {
+	height: 100%;
+	box-sizing: border-box;
 }
-.auto-style59 {
+
+body {
+	margin: 0;
+	display: flex;
+	min-height: 100%;
+	background-color: #961926;
+}
+
+#inner-flex-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 150px);
+}
+
+aside {
+	flex: 1 150px;
+	background: white;
+}
+
+header  {
+	flex: 1; background: tomato;
+}
+
+section {
+	flex: 5;
+	background: deepskyblue;
+}
+
+footer  { flex: 1; background: lightgreen; }
+
+
+
+
+/* .auto-style59 {
 	background-color: #660000;
 }
 .auto-style60 {
@@ -87,5 +125,5 @@ body {
 }
 
 .headliner, .donation-pp {
-	color: white;
+	color: white; */
 }

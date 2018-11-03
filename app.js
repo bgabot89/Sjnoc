@@ -68,6 +68,10 @@ app.get('/payment', (req, res) => {
   });
 });
 
+app.get('/test', (req,res) => {
+  res.render('test');
+});
+
 
 app.post('/charge', (req, res) => {
 
@@ -79,6 +83,7 @@ app.post('/charge', (req, res) => {
     email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
+
   .then(customer => stripe.charges.create({
     amount,
     description: 'Donation',
@@ -86,6 +91,7 @@ app.post('/charge', (req, res) => {
     receipt_email: 'briangabot@gmail.com',
     customer: customer.id
   }))
+
   .then(charge => res.render('success'));
 });
 
