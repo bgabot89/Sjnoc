@@ -21,7 +21,7 @@ body {
 #inner-flex-container {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 150px);
+  width: calc(100% - 220px);
 }
 
 aside {
@@ -29,18 +29,25 @@ aside {
 	background: white;
 }
 
-header  {
-	flex: 1; background: tomato;
+.aside-list {
+	list-style: none;
+	font-size: 2em;
+	margin-top: 30px;
 }
+
+/* header  {
+	flex: 1; background: tomato;
+} */
 
 section {
 	flex: 5;
 	background: deepskyblue;
 }
 
-footer  { flex: 1; background: lightgreen; }
-
-
+footer  {
+	flex: 1;
+	background: lightgreen;
+}
 
 
 /* .auto-style59 {

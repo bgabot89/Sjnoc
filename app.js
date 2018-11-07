@@ -41,11 +41,12 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-
 // app.use(require('body-parser').urlencoded({extended: false}));
 
 // Set Static Folder
 app.use('/static', express.static('./public'));
+
+app.use('/scripts', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 //NEW ROUTING
 app.get('/', (req, res) => {
@@ -75,10 +76,11 @@ app.get('/test', (req,res) => {
 
 app.post('/charge', (req, res) => {
 
-  console.log(res.body);
+  console.log(req.body);
 
   const amount = 500;
 
+  //creates a new customer from form
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken
