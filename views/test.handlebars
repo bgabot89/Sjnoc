@@ -1,26 +1,6 @@
 <!--HEADER STUFF-->
 <form id="checkout-form">
 
-				<!--Donate button-->
-
-
-				<!-- <div id="shop">
-					<button id="buttonCheckout">Donate</button>
-				</div> -->
-
-
-         <!-- <button type="submit" id="submit" class="btn btn-outline-dark text-white btn-lg">Donate</button> -->
-
-         <!-- <script
-           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-           data-key="{{stripePublishableKey}}"
-           data-image="static/images/NOC_logo3.jpg"
-           data-amount="500"
-           data-name="Donation"
-           data-description="Donation form for sjnoc"
-           data-locale="auto">
-         </script> -->
-
          <script>
           document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
         </script>
@@ -43,13 +23,6 @@
 
         //configuring the checkout library -- NEW METHOD
 
-          // $('#PurchaseButton').click(function() {
-          //   var token = function(res){
-          //     var $id = $('<input type="hidden" name=StripeToken />').val(res.id);
-          //     var $email = $('<input type="hidden name=stripeEmail />').val(res.email);
-          //     $('form').append($id).append($email).submit();
-          //   };
-
             var button = document.getElementById('PurchaseButton');
 
             //button handler and event listener that will open checkout
@@ -68,7 +41,6 @@
               checkoutHandler.open({
                 name: "Sample Store",
                 description: "Example Purchase",
-                // token: handleToken,
                 amount: amount
             })
             $('input#stripeAmount').val(amount);
@@ -85,41 +57,19 @@
                 console.log(token);
 
                     $('input#stripeToken').val(token.id);
-                    //   fetch("/charge", {
-                    //       method: "POST",
-                    //       headers: {"Content-Type": "application/json"},
-                    //       body: JSON.stringify(token)
-                    // })
-
-                    // $('#checkout-form').submit(function(ev){
-                        // ev.preventDefault();
-
-                      // console.log('submitting to the back-end');
                       $.ajax({
                         url: '/charge',
                         type: 'POST',
                         // data : $('#checkout-form').serialize(),
-                        data: { tokenid: token.id, email: token.email, tokenAmt: amount},
+                        data: { tokenid: token.id,
+                                email: token.email,
+                                tokenAmt: amount
+                              },
                         success: function(response){
                           console.log('form submitted.');
                           window.location.href = '/success';
                     }
                   });
-
-                // });
-
-
-                  // $.ajax({
-                  //   type: "POST",
-                  //   url: "/charge",
-                  //   data:
-                  //   success: function() {
-                  //     console.log('done');
-                  //   }
-                  //   dataType: 'json',
-                  //   contentType= "application/json"
-                  // });
-
               }
             });
 
@@ -129,32 +79,6 @@
           $(window).on('popstate', function() {
             handler.close();
           });
-
-
-            //ENDD
-
-            //open method
-            // StripeCheckout.open({
-            //   amount:      amount,
-            //   name:        'Donation amount',
-            //   description: 'Donation for SJNOC',
-            //   panelLabel:  'Checkout',
-            //   token:       handleToken
-            // });
-
-            //token and passes info into charge method
-
-            // function handleToken(token) {
-            // 	console.log(token);
-            //   fetch("/charge", {
-            //     method: "POST",
-            //     headers: {"Content-Type": "application/json"},
-            //     body: JSON.stringify(token)
-            //   })
-            // }
-
-            // return false;
-          // });
 
         </script>
 </form>
