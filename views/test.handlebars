@@ -53,12 +53,13 @@
                 $('#err-invalid-number').fadeIn();
                 $('#err-large-number').hide();
               }
-              else if (amount > 100) {
+              else if (amount > 10000) {
                 console.log('too large');
                 $('#err-invalid-number').hide();
                 $('#err-large-number').fadeIn();
               }
               else {
+                console.log('number is okay, opening handler');
               //if not then open the checkout menu
               checkoutHandler.open({
                 name: "SJNOC Donation",
