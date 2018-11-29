@@ -9,6 +9,9 @@ const bodyParser = require("body-parser");
 
 const exphbs = require('express-handlebars');
 
+//requiring check object from express-validator package
+const { check } = require('express-validator/check')
+
 
 const app = express();
 
@@ -70,31 +73,45 @@ app.get('/payment', (req, res) => {
 });
 
 app.get('/test', (req,res) => {
-  res.render('test');
+  res.render('test', {
+    stripePublishableKey: keys.stripePublishableKey
+  })
 });
+
+app.get('/success', (req,res) => {
+  res.render('success');
+})
 
 
 app.post('/charge', (req, res) => {
 
   console.log(req.body);
 
-  const amount = 500;
+  const amount = req.body.tokenAmt;
 
   //creates a new customer from form
   stripe.customers.create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken
+    email: req.body.email, //-->email: req.body.email
+    source: req.body.tokenid //-->card: req.body.id
   })
 
   .then(customer => stripe.charges.create({
     amount,
     description: 'Donation',
     currency: 'usd',
-    receipt_email: 'briangabot@gmail.com',
     customer: customer.id
   }))
 
-  .then(charge => res.render('success'));
+  .then(charge => {
+    console.log('charged successful');
+    res.render('success');
+  });
+
+  // .catch(err => {
+  //   console.log("Error:", err);
+  //   res.status(500).send({error: "Purchase failed"});
+  // });
+
 });
 
 //OLD ROUTING with html files

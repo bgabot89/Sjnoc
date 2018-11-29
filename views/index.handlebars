@@ -138,9 +138,6 @@
 					<button id="buttonCheckout">Donate</button>
 				</div> -->
 
-
-         <!-- <button type="submit" id="submit" class="btn btn-outline-dark text-white btn-lg">Donate</button> -->
-
          <script
            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
            data-key="{{stripePublishableKey}}"
@@ -151,15 +148,10 @@
            data-locale="auto">
          </script>
 
-         <script>
-          // Hide default stripe button
-          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
-        </script>
+         <!-- <button type="submit" id="submit" class="btn btn-outline-dark text-white btn-lg">Donate</button> -->
 
-        <!--Test CUSTOM AMOUNT -->
-        <input id="custom-donation-amount" class="form-control" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
-
-        <button id="PurchaseButton" type="submit"> Purchase </button>
+         <!--Test CUSTOM AMOUNT -->
+         <input type="text" />
 
 				</table>
 			</td>
@@ -569,14 +561,6 @@
   </TR>
   </TABLE>
 </form>
-
-<script>
-document.getElementById('PurchaseButton').addEventListener('click', function (e) {
-  var amount = $("#custom-donation-amount").val() * 100;
-  // e.preventDefault();
-  console.log(amount);
-});
-</script>
 
 <!-- </body>
 </html>
