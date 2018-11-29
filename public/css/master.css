@@ -50,7 +50,41 @@ footer  {
 }
 
 .error {
-	visibility: hidden;
+	display: none;
+}
+
+#checkout-form {
+	margin: 100px auto;
+	text-align: center;
+	border: 1px solid #888888;
+	width: 500px;
+	padding: 25px;
+	height: 350px;
+	background-color: white;
+}
+
+.input-group {
+  margin-left: 150px;
+}
+
+.checkout-section {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: green;
+	background: url('../images/juniper.jpg') no-repeat fixed center;
+}
+
+
+button:hover {
+	cursor: pointer;
+}
+
+.btn-primary {
+	width: 300px;
+	height: 40px;
 }
 
 

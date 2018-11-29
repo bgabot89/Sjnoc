@@ -1,25 +1,38 @@
 <!--HEADER STUFF-->
+<div class="checkout-section">
 <form id="checkout-form">
 
          <script>
           document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
         </script>
 
+        <h3> Enter an amount to donate </h3>
+
+        <hr>
+
         <!--Test CUSTOM AMOUNT -->
-        <div class="error alert alert-danger" role="alert">
+        <div class="error alert alert-danger" id="err-invalid-number" role="alert">
           Error: The amount you inputted is not a valid number, please type in a valid number and try again.
         </div>
 
-        <input id="custom-donation-amount" class="form-control" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
+        <div class="error alert alert-danger" id="err-large-number" role="alert">
+          Error: The amount you inputted is too large. We are currently only accepting donations over $50.
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-addon">$</span>
+          <input id="custom-donation-amount" class="col-md-3 form-control form-control-lg" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
+        </div>
+
         <br>
         <input type= "hidden" id="stripeToken" type=""/>
         <br>
-        <input "hidden" id="stripeAmount" type=""/>
+        <input type= "hidden" id="stripeAmount" type=""/>
 
         <!-- <button id="PurchaseButton" type="submit"> Purchase </button> -->
 
         <!--Button to Donate-->
-        <button type="submit" id="PurchaseButton">Checkout</button>
+        <button class="btn btn-primary" type="submit" id="PurchaseButton">Donate</button>
 
         <script>
 
@@ -35,15 +48,21 @@
 
 
               //if user does not input a number, then return an error....
-              if (isNaN(amount) || amount === 0) {
+              if (isNaN(amount) || amount <= 0 ) {
                 console.log('error, not an integer');
-                $('.error').css("visibility", "visible");
+                $('#err-invalid-number').fadeIn();
+                $('#err-large-number').hide();
+              }
+              else if (amount > 100) {
+                console.log('too large');
+                $('#err-invalid-number').hide();
+                $('#err-large-number').fadeIn();
               }
               else {
               //if not then open the checkout menu
               checkoutHandler.open({
-                name: "Sample Store",
-                description: "Example Purchase",
+                name: "SJNOC Donation",
+                description: "Donation to the SJNOC organization",
                 amount: amount
             })
 
@@ -84,3 +103,4 @@
 
         </script>
 </form>
+</div>
