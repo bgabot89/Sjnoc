@@ -49,6 +49,10 @@ footer  {
 	background: lightgreen;
 }
 
+.error {
+	visibility: hidden;
+}
+
 
 /* .auto-style59 {
 	background-color: #660000;

@@ -6,11 +6,15 @@
         </script>
 
         <!--Test CUSTOM AMOUNT -->
+        <div class="error alert alert-danger" role="alert">
+          Error: The amount you inputted is not a valid number, please type in a valid number and try again.
+        </div>
+
         <input id="custom-donation-amount" class="form-control" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
         <br>
-        <input id="stripeToken" type=""/>
+        <input type= "hidden" id="stripeToken" type=""/>
         <br>
-        <input id="stripeAmount" type=""/>
+        <input "hidden" id="stripeAmount" type=""/>
 
         <!-- <button id="PurchaseButton" type="submit"> Purchase </button> -->
 
@@ -18,8 +22,6 @@
         <button type="submit" id="PurchaseButton">Checkout</button>
 
         <script>
-
-
 
         //configuring the checkout library -- NEW METHOD
 
@@ -33,8 +35,9 @@
 
 
               //if user does not input a number, then return an error....
-              if (isNaN(amount)) {
+              if (isNaN(amount) || amount === 0) {
                 console.log('error, not an integer');
+                $('.error').css("visibility", "visible");
               }
               else {
               //if not then open the checkout menu
@@ -43,6 +46,7 @@
                 description: "Example Purchase",
                 amount: amount
             })
+
             $('input#stripeAmount').val(amount);
            }
           });
@@ -60,19 +64,17 @@
                       $.ajax({
                         url: '/charge',
                         type: 'POST',
-                        // data : $('#checkout-form').serialize(),
                         data: { tokenid: token.id,
                                 email: token.email,
                                 tokenAmt: amount
                               },
                         success: function(response){
                           console.log('form submitted.');
-                          window.location.href = '/success';
+                          window.location.href = '/success'; //redirect to success page
                     }
                   });
               }
             });
-
 
           //closes Checkout on page navigation
 
