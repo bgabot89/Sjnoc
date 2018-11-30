@@ -52,15 +52,19 @@
 
 
         <!--custom donation amount form-->
-        <div class="input-group" id="custom-amount-section">
-          <span class="input-group-addon">$</span>
-          <input id="custom-donation-amount" class="col-md-3 form-control form-control-lg" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
+        <label class="donation-label" for="colFormLabel">Your donation amount:</label>
+
+        <div class="input-group input-group-lg" id="custom-amount-section">
+          <!-- <div class="input-group-prepend"> -->
+             <span class="input-group-addon">$</span>
+           <!-- </div> -->
+            <input type="number" id="custom-donation-amount" class="form-control" placeholder="10.00" min="0" max="50.00" step="5.00"/>
         </div>
 
         <br>
         <input type="hidden" id="stripeToken" type=""/>
         <br>
-        <input type="" id="stripeAmount" type=""/>
+        <input type="hidden" id="stripeAmount" type=""/>
 
         <!-- <button id="PurchaseButton" type="submit"> Purchase </button> -->
 
@@ -79,6 +83,14 @@
             console.log(newAmount + '.' + 0);
             $('input#custom-donation-amount').val(newAmount);
             ev.preventDefault();
+        });
+
+        //when clicking on the Other button, highlight the custom amount field
+        $('#other-button').on('click', function(ev){
+
+          document.getElementById("custom-donation-amount").focus();
+
+          ev.preventDefault();
         });
 
         //configuring the checkout library -- NEW METHOD

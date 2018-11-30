@@ -63,7 +63,7 @@ footer  {
 	border: 1px solid #888888;
 	width: 500px;
 	padding: 25px;
-	height: 350px;
+	height: 450px;
 	background-color: white;
 }
 
@@ -93,12 +93,16 @@ button:hover {
 
 #custom-amount-section {
 	margin-top: 20px;
+	width: 150px;
+}
+
+.donation-label {
+	margin-top: 20px;
 }
 
 .option-selection {
 	margin-top: 10px;
 }
-
 
 /* .auto-style59 {
 	background-color: #660000;
