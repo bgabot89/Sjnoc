@@ -19,32 +19,79 @@
           Error: The amount you inputted is too large. We are currently only accepting donations over $50.
         </div>
 
-        <div class="input-group">
+        <div class="container">
+        <div class="row">
+
+          <div class="col-md-4 option-selection">
+            <button value="500" class="btn btn-primary btn-donation-option">$5</button>
+          </div>
+
+          <div class="col-md-4 option-selection">
+            <button value="1000" class="btn btn-primary btn-donation-option">$10</button>
+          </div>
+
+          <div class="col-md-4 option-selection">
+            <button value="1500" class="btn btn-primary btn-donation-option">$15</button>
+          </div>
+
+          <div class="col-md-4 option-selection">
+            <button value="2000" class="btn btn-primary btn-donation-option">$20</button>
+          </div>
+
+          <div class="col-md-4 option-selection">
+            <button value="2500" class="btn btn-primary btn-donation-option">$25</button>
+          </div>
+
+          <div class="col-md-4 option-selection">
+            <button value="" class="btn btn-primary btn-donation-option" id="other-button">Other</button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+        <!--custom donation amount form-->
+        <div class="input-group" id="custom-amount-section">
           <span class="input-group-addon">$</span>
           <input id="custom-donation-amount" class="col-md-3 form-control form-control-lg" type="number" placeholder="10.00" min="0" max="50.00" step="5.00"/>
         </div>
 
         <br>
-        <input type= "hidden" id="stripeToken" type=""/>
+        <input type="hidden" id="stripeToken" type=""/>
         <br>
-        <input type= "hidden" id="stripeAmount" type=""/>
+        <input type="" id="stripeAmount" type=""/>
 
         <!-- <button id="PurchaseButton" type="submit"> Purchase </button> -->
 
         <!--Button to Donate-->
+
         <button class="btn btn-primary" type="submit" id="PurchaseButton">Donate</button>
 
         <script>
 
+        //script to prevent default action when clicking on a button
+        var donationoption = document.getElementsByClassName('btn-donation-form');
+
+        $('.btn-donation-option').on('click', function(ev){
+            var amount = $(this).attr('value');
+            var newAmount = amount * 0.01;
+            console.log(newAmount + '.' + 0);
+            $('input#custom-donation-amount').val(newAmount);
+            ev.preventDefault();
+        });
+
         //configuring the checkout library -- NEW METHOD
 
-            var button = document.getElementById('PurchaseButton');
+            var Purchasebutton = document.getElementById('PurchaseButton');
 
             //button handler and event listener that will open checkout
-            button.addEventListener('click', function(ev) {
+            Purchasebutton.addEventListener('click', function(ev) {
               ev.preventDefault();
 
                 var amount = $("input#custom-donation-amount").val() * 100;
+
+                $('input#stripeAmount').val(amount); //upon opening checkout popup, add the amount to the invisible stripeamount input section
 
 
               //if user does not input a number, then return an error....
@@ -66,8 +113,6 @@
                 description: "Donation to the SJNOC organization",
                 amount: amount
             })
-
-            $('input#stripeAmount').val(amount);
            }
           });
 
@@ -80,7 +125,9 @@
                 var amount = $("input#custom-donation-amount").val() * 100;
                 console.log(token);
 
-                    $('input#stripeToken').val(token.id);
+                    $('input#stripeToken').val(token.id); //inputs tokenid in an invisible field on the form
+
+                    //sends an asynchronous request to the backend so the user can still can communicate with the webpage while it communicates with the db
                       $.ajax({
                         url: '/charge',
                         type: 'POST',
