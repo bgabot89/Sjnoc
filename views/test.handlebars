@@ -22,27 +22,27 @@
         <div class="container">
         <div class="row">
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button value="500" class="btn btn-primary btn-donation-option">$5</button>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button value="1000" class="btn btn-primary btn-donation-option">$10</button>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button value="1500" class="btn btn-primary btn-donation-option">$15</button>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button value="2000" class="btn btn-primary btn-donation-option">$20</button>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button value="2500" class="btn btn-primary btn-donation-option">$25</button>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-6 option-selection">
+          <div class="col-md-4 col-sm-4 col-xs-6 option-selection">
             <button class="btn btn-primary btn-donation-option" id="other-button">Other</button>
           </div>
 
@@ -59,6 +59,11 @@
              <span class="input-group-addon">$</span>
            <!-- </div> -->
             <input type="number" id="custom-donation-amount" class="form-control" placeholder="0.00" min="0" max="50.00" step="5.00"/>
+            <!-- <div class="col-sm-3 error-message"> -->
+              <!-- <span class="text-danger">
+                Must be 8-20 characters long.
+              </span> -->
+            <!-- </div> -->
         </div>
 
         <br>
@@ -112,7 +117,7 @@
                 $('#err-invalid-number').fadeIn();
                 $('#err-large-number').hide();
               }
-              else if (amount > 10000) {
+              else if (amount > 10000) { //5000
                 console.log('too large');
                 $('#err-invalid-number').hide();
                 $('#err-large-number').fadeIn();

@@ -82,6 +82,11 @@ app.get('/success', (req,res) => {
   res.render('success');
 })
 
+//TEMPLATE
+
+app.get('/donate', (req,res) => {
+  res.render('donate');
+})
 
 app.post('/charge', (req, res) => {
 
