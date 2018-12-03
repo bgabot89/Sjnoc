@@ -9,10 +9,6 @@ const bodyParser = require("body-parser");
 
 const exphbs = require('express-handlebars');
 
-//requiring check object from express-validator package
-const { check } = require('express-validator/check')
-
-
 const app = express();
 
 //publishable and secret keys
