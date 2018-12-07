@@ -78,10 +78,11 @@ app.get('/success', (req,res) => {
   res.render('success');
 })
 
-//TEMPLATE
-
+//this will redirect to the old donation form
 app.get('/donate', (req,res) => {
-  res.render('donate');
+  res.render('donate', {
+    stripePublishableKey: keys.stripePublishableKey
+  });
 })
 
 app.post('/charge', (req, res) => {
