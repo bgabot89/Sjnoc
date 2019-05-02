@@ -1,6 +1,6 @@
 ## Sjnoc
-A repository for the non-profit organization, SJNOC.
-Developer STACK: Express, Node,js and Handlebars.js. Test Site can be found here: https://sjnoc-test.herokuapp.com/
+A code repository for SJNOC's payment system.
+Developer STACK: Express, Node.js and Handlebars.js. Prototype of the site can be found here: https://sjnoc-test.herokuapp.com/
 
 
 ## Installation
